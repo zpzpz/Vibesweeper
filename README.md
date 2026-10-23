@@ -9,7 +9,7 @@ I wanted to test out how good Big Pickle was at decompilation, so I threw it at 
 # Building
 ```
 git clone 
-cd minesweeper
+cd Vibesweeper
 cargo build
 ```
 
