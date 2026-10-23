@@ -561,7 +561,7 @@ impl eframe::App for MinesweeperApp {
         // Cells.
         for y in 1..=self.game.height {
             for x in 1..=self.game.width {
-                let rect = self.cell_rect(area, x, y);
+                let rect = self.cell_rect(area, x, y, 1_f32);
                 draw_cell(&p, rect, self.game.sprite(x, y));
             }
         }
