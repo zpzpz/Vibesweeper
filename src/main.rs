@@ -528,7 +528,7 @@ impl eframe::App for MinesweeperApp {
 
         let (area, _resp) = ui.allocate_exact_size(Vec2::new(w, h), Sense::click());
 
-        self.handle_input(ui, area);
+        self.handle_input(ui, area, 1_f32);
         self.update_timer();
 
         // ---- draw ----
@@ -569,7 +569,7 @@ impl eframe::App for MinesweeperApp {
         // Press preview (highlight the cell currently held down on).
         if let (Some(c), true) = (self.press_cell, true) {
             if self.game.is_playing() {
-                let rect = self.cell_rect(area, c.0, c.1);
+                let rect = self.cell_rect(area, c.0, c.1, 1_f32);
                 let sprite = self.game.sprite(c.0, c.1);
                 if sprite == cell::V_COVERED {
                     p.rect_filled(rect, 0.0, COL_FACE);
@@ -585,7 +585,7 @@ impl eframe::App for MinesweeperApp {
         // xyzzy cheat: highlight the mine under the cursor with a dot in the corner.
         if self.xyzzy_pos >= 5 {
             if let Some(pos) = ui.input(|i| i.pointer.hover_pos()) {
-                if let Some((x, y)) = self.cell_at(area, pos) {
+                if let Some((x, y)) = self.cell_at(area, pos, 1_f32) {
                     if self.game.cell(x, y) & cell::MINE != 0 {
                         p.rect_filled(
                             Rect::from_min_size(area.min + Vec2::new(1.0, 1.0), Vec2::splat(4.0)),
